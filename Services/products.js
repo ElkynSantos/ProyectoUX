@@ -20,7 +20,20 @@ return Products;
 
 }
 
+async function searchProduct(name1){
+
+    const ProductByName=JSON.parse(JSON.stringify(await knex.select("*").from('products')
+    .join('brands','brands.id_B','=','products.brand_id')
+    .join('categories','id_C','=','products.category_id').where('products.name_P','=',name1)));
+
+   
+
+return ProductByName;
+}
+
+
 module.exports={
-    getProducts
+    getProducts,
+    searchProduct
 
 };

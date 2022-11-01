@@ -12,8 +12,21 @@ async function getProducts(req,res){
 
 }
 
+async function searchProduct(req,res){
+
+    const {name}=req.query;
+   
+    const products=await ProductsServices.searchProduct(name);
+    
+    res.send(products);
+
+}
+
+
 
 module.exports={
-getProducts
+getProducts,
+searchProduct
+
 
 };
