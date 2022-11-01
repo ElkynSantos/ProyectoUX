@@ -1,24 +1,49 @@
 const  ProductsServices = require('../Services/products');
-
-
+const { successResponse, badRequestResponse } = require("../utils/responseBuilder");
+const { IsString } = require("../utils/validator");
 
 async function getProducts(req,res){
 
-    const {limit, offset}=req.query;
+    try {
+        const {limit, offset}=req.query;
+        const errorMessages = [];
+        if(!limit && !offset){
+            errorMessages.push("Parameter Need is required");
+        }
+        //*FALTA VALIDACION SI ES DECIMAL.
+
+        if(errorMessages.length){
+            res.status(400).send(errorMessages);
+        }else{
    
-    const products=await ProductsServices.getProducts(limit,offset);
-    
-    res.send(products);
+            const products=await ProductsServices.getProducts(limit,offset);
+            res.send(products);
+        }
+        
+    } catch (exception) {
+
+        res.status(500).send("internal server error");
+        
+    }
+   
 
 }
 
 async function searchProduct(req,res){
 
-    const {name}=req.query;
-   
-    const products=await ProductsServices.searchProduct(name);
+    try{
+        const {name}=req.query;
+      
+        
+        const products=await ProductsServices.searchProduct(name);
     
-    res.send(products);
+        res.send(products);
+        
+
+    }catch{
+
+    
+    }
 
 }
 
