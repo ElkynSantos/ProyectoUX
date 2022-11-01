@@ -2,8 +2,11 @@ const  ProductsServices = require('../Services/products');
 
 
 
-async function getProducts(_,res){
-    const products=await ProductsServices.getProducts();
+async function getProducts(req,res){
+
+    const {limit, offset}=req.query;
+   
+    const products=await ProductsServices.getProducts(limit,offset);
     
     res.send(products);
 

@@ -10,10 +10,10 @@ const knex = require('knex')({
 });
 
 
-async function getProducts(){
+async function getProducts(li,off){
 
     const Products= JSON.parse(JSON.stringify(
-        await knex.select().table('products'))
+        await knex.select("*").from('products').limit(li).offset(off))
     );
 
 return Products;
