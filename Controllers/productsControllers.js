@@ -33,14 +33,27 @@ async function searchProduct(req,res){
 
     try{
         const {name}=req.query;
+        const errorMessages = [];
       
-        
+        if(!name){
+            errorMessages.push("Parameter Need is required");
+        }
+
+        if(typeof name !== "string"){
+            errorMessages.push("name is not string");
+        }
+
+        if(errorMessages.length){
+         res.status(400).send(badRequestResponse(errorMessages));
+        }
+        else{
         const products=await ProductsServices.searchProduct(name);
     
         res.send(products);
+        }
         
 
-    }catch{
+    }catch(exception){
 
     
     }
@@ -52,6 +65,5 @@ async function searchProduct(req,res){
 module.exports={
 getProducts,
 searchProduct
-
 
 };
