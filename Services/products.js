@@ -3,8 +3,8 @@ const knex = require('knex')({
     connection: {
         host: '127.0.0.1',
         port: 3306,
-        user: 'LourdesSantos',
-        password: 'Reina2000',
+        user: 'proyectoux',
+        password: 'reina2000',
         database: 'ecomm'
     }
 });

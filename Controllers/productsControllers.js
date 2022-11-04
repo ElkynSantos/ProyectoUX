@@ -1,6 +1,8 @@
 const  ProductsServices = require('../Services/products');
 const { successResponse, badRequestResponse } = require("../utils/responseBuilder");
 const { IsString } = require("../utils/validator");
+const address = require("../utils/address");
+
 
 async function getProducts(req,res){
 
@@ -18,6 +20,9 @@ async function getProducts(req,res){
    
             const products=await ProductsServices.getProducts(limit,offset);
             res.send(products);
+
+
+
         }
         
     } catch (exception) {
@@ -42,11 +47,19 @@ async function searchProduct(req,res){
 
     }catch{
 
+    return;
     
     }
 
 }
 
+
+
+
+
+
+
+ 
 
 
 module.exports={
