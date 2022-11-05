@@ -1,4 +1,4 @@
-const knex = require('knex')({
+const db = require('knex')({
     client: 'mysql',
     connection: {
         host: '127.0.0.1',
@@ -8,7 +8,7 @@ const knex = require('knex')({
         database: 'ecomm'
     }
 });
-
+/*
 
 async function getProducts(li,off){
 
@@ -37,4 +37,6 @@ module.exports={
     getProducts,
     searchProduct
 
-};
+};*/
+
+module.exports = db;

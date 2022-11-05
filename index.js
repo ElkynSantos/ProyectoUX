@@ -1,20 +1,34 @@
-const express = require('express');
+express = require("express");
+const {
+  addUserRouter,
+  loginRouter,
+  editPasswordRouter,
+  editEmailRouter,
+  editNameRouter,
+  
+} = require("./Routes/usersrouter");
+
 const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.json());
 
 
 const PORT = 3000;
 
-const ProductsRouter=require("./Routes/productRoute");
-const addressRouter = require("./Routes/address.router");
+//const ProductsRouter=require("./Routes/productRoute");
 
-app.use('/products', ProductsRouter);
+//app.use('/products', ProductsRouter);
 
-app.use('/products',ProductsRouter);
+//app.use('/products',ProductsRouter);
 
-app.use("/address", addressRouter);
+app.use("/users", addUserRouter);
+app.use("/login", loginRouter);
+app.use("/edit-password", editPasswordRouter);
+app.use("/edit-email", editEmailRouter);
+app.use("/edit-name", editNameRouter);
+
 
 // app.listen(3000);
 

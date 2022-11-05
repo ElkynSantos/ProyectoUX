@@ -1,7 +1,7 @@
 const  ProductsServices = require('../Services/products');
 const { successResponse, badRequestResponse } = require("../utils/responseBuilder");
 const { IsString } = require("../utils/validator");
-const address = require("../utils/address");
+// const address = require("../utils/address");
 
 
 async function getProducts(req,res){
@@ -65,15 +65,6 @@ async function searchProduct(req,res){
     }
 
 }
-
-
-
-
-
-
-
- 
-
 
 module.exports={
 getProducts,
