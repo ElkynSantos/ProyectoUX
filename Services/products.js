@@ -8,10 +8,11 @@ const db = require('knex')({
         database: 'ecomm'
     }
 });
-/*
 
-async function getProducts(li,off){
 
+async function getProducts1(li,off){
+
+    console.log("entro")
     const Products= JSON.parse(JSON.stringify(
         await knex.select("*").from('products').limit(li).offset(off))
     );
@@ -34,9 +35,8 @@ return ProductByName;
 
 
 module.exports={
-    getProducts,
+    getProducts1,
     searchProduct
 
-};*/
+};
 
-module.exports = db;
