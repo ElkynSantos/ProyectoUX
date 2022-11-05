@@ -23,15 +23,15 @@ editPasswordRouter.put("/", (req, res) => {
 });
 
 editEmailRouter.put("/", (req, res) => {
-  editEmail(req, res, db); // arguments are passed as dependy injection
+  editEmail(req, res, db); 
 });
 
 editNameRouter.put("/", (req, res) => {
-  editName(req, res, db); // arguments are passed as dependy injection
+  editName(req, res, db); 
 });
 
 loginRouter.post("/", (req, res) => {
-  login(req, res, db); // arguments are passed as dependy injection
+  login(req, res, db); 
 });
 
 module.exports = {
