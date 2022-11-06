@@ -16,6 +16,7 @@
     "knex": "^2.3.0",
     "mysql": "^2.18.1",
     "swagger-ui-express": "^4.5.0",
+    "to-regex": "^3.0.2",
     "yam": "^1.0.0",
     "yamljs": "^0.3.0"
   }

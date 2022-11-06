@@ -1,9 +1,9 @@
 const  ProductsServices = require('../Services/products');
 const { successResponse, badRequestResponse } = require("../utils/responseBuilder");
-const { IsString } = require("../utils/validator");
-// const address = require("../utils/address");
+//const { IsString } = require("../utils/validator");
 
 
+const { isDecimal } = require("../utils/validator");
 async function getProducts(req,res){
 
     try {
@@ -12,14 +12,16 @@ async function getProducts(req,res){
         if(!limit && !offset){
             errorMessages.push("Parameter Need is required");
         }
-        //*FALTA VALIDACION SI ES DECIMAL.
+        if(isDecimal(limit)||isDecimal(offset)){
+        errorMessages.push("Parameter Integer is required");
+        }
 
         if(errorMessages.length){
             res.status(400).send(errorMessages);
         }else{
    
             const products=await ProductsServices.getProducts(limit,offset);
-            res.send(products);
+            res.status(200).send(products);
 
 
 
@@ -54,7 +56,7 @@ async function searchProduct(req,res){
         else{
         const products=await ProductsServices.searchProduct(name);
     
-        res.send(products);
+        res.status(200).send(products);
         }
         
 

@@ -1,4 +1,4 @@
-const db = require('knex')({
+const knex = require('knex')({
     client: 'mysql',
     connection: {
         host: '127.0.0.1',
@@ -8,7 +8,7 @@ const db = require('knex')({
         database: 'ecomm'
     }
 });
-/*
+
 
 async function getProducts(li,off){
 
@@ -22,7 +22,7 @@ return Products;
 
 async function searchProduct(name1){
 
-    console.log(name1);
+   // console.log(name1);
     const ProductByName=JSON.parse(JSON.stringify(await knex.select("*").from('products')
     .join('brands','brands.id_B','=','products.brand_id')
     .join('categories','id_C','=','products.category_id').whereLike('products.name_P','%'+name1+'%')));
@@ -37,6 +37,5 @@ module.exports={
     getProducts,
     searchProduct
 
-};*/
+};
 
-module.exports = db;
