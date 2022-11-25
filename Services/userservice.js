@@ -1,32 +1,35 @@
-const knex = require('knex')({
-  client: 'mysql',
+const knex = require("knex")({
+  client: "mysql",
   connection: {
-      host: process.env.DB_HOST,
-      port: 3306,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE
-  }
+    host: process.env.DB_HOST,
+    port: 3306,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+  },
 });
 
-function editName(id,newName) { knex("users").where("id", "=", id).update({ name: newName })}
-
-
-function editEmail(id,newEmail) { knex("users").where("id", "=", id).update({ email: newEmail })}
-
-
-async function PutUser(id,Newname,Newemail){
- await knex('users').where('id','=',id).update({
-   name: Newname,
-    email: Newemail
- });
-
-return;
+function editName(id, newName) {
+  knex("users").where("id", "=", id).update({ name: newName });
 }
 
-module.exports={
-  PutUser
+function editEmail(id, newEmail) {
+  knex("users").where("id", "=", id).update({ email: newEmail });
+}
+
+async function PutUser(id, Newname, Newemail) {
+  await knex("users").where("id", "=", id).update({
+    name: Newname,
+    email: Newemail,
+  });
+
+  return;
+}
+
+module.exports = {
+  PutUser,
 };
+
 /*
 function addUser(req, res) {
   const { email, name, password, salt } = req.body;
@@ -81,4 +84,3 @@ function editPassword(req, res) {
   }
 }
 */
-

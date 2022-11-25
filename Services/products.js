@@ -20,7 +20,7 @@ async function getProducts1(li, off) {
   return Products;
 }
 
-async function searchProduct(name1) {
+async function searchProduct(name1, brands, categories) {
   // console.log(name1);
   const ProductByName = JSON.parse(
     JSON.stringify(
@@ -29,7 +29,9 @@ async function searchProduct(name1) {
         .from("products")
         .join("brands", "brands.id_B", "=", "products.brand_id")
         .join("categories", "id_C", "=", "products.category_id")
-        .whereLike("products.name_P", "%" + name1 + "%")
+        .where("products.name_P", "Like", "%" + name1 + "%")
+        .where("brands.nameB", "Like", "%" + brands + "%")
+        .where("categories.nameC", "Like", "%" + categories + "%")
     )
   );
 
