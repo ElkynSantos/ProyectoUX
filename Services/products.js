@@ -21,7 +21,7 @@ async function getProducts1(li, off) {
 }
 
 async function searchProduct(name1, brands, categories) {
-  // console.log(name1);
+  console.log("entro");
   const ProductByName = JSON.parse(
     JSON.stringify(
       await knex

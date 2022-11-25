@@ -28,12 +28,8 @@ async function getProducts(req, res) {
 
 async function searchProduct(req, res) {
   try {
-    const { name } = req.query;
+    const { name, brands, categories } = req.query;
     const errorMessages = [];
-
-    if (!name) {
-      errorMessages.push("Parameter Need is required");
-    }
 
     if (typeof name !== "string") {
       errorMessages.push("name is not string");
@@ -44,7 +40,11 @@ async function searchProduct(req, res) {
 
       res.status(400).send(badRequestResponse(errorMessages));
     } else {
-      const products = await ProductsServices.searchProduct(name);
+      const products = await ProductsServices.searchProduct(
+        name,
+        brands,
+        categories
+      );
 
       res.status(200).send(products);
     }

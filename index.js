@@ -18,11 +18,11 @@ require("dotenv").config();
 
 const PORT = 3000;
 
-//const ProductsRouter=require("./Routes/productRoute");
+const ProductsRouter = require("./Routes/productRoute");
 
-//app.use('/products', ProductsRouter);
+app.use("/products", ProductsRouter);
 
-//app.use('/products',ProductsRouter);
+app.use("/products", ProductsRouter);
 
 // app.listen(3000);
 
