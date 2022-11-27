@@ -1,11 +1,4 @@
 express = require("express");
-const {
-  addUserRouter,
-  loginRouter,
-  editPasswordRouter,
-  editEmailRouter,
-  editNameRouter,
-} = require("./Routes/usersrouter");
 
 const bodyParser = require("body-parser");
 
@@ -19,10 +12,12 @@ require("dotenv").config();
 const PORT = 3000;
 
 const ProductsRouter = require("./Routes/productRoute");
+const usersrouter = require("./Routes/usersrouter");
 
 app.use("/products", ProductsRouter);
 
 app.use("/products", ProductsRouter);
+app.use("/users", usersrouter);
 
 // app.listen(3000);
 

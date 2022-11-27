@@ -21,7 +21,7 @@ async function getProducts(req, res) {
   if (errorMessages.length) {
     res.status(400).send(errorMessages);
   } else {
-    const products = await ProductsServices.getProducts(limit, offset);
+    const products = await ProductsServices.getProducts1(limit, offset);
     res.send(products);
   }
 }
