@@ -17,6 +17,13 @@ function editEmail(id, newEmail) {
   knex("users").where("id", "=", id).update({ email: newEmail });
 }
 
+async function userByemail(email) {
+  const users = JSON.parse(
+    JSON.stringify(await knex.select().table("users").where("email", email))
+  );
+  return users;
+}
+
 async function PutUser(id, city, street, state, zipcode, phone) {
   await knex("address").where("address.user_id", "=", id).update({
     city: city,
@@ -44,4 +51,5 @@ async function addUser(user) {
 module.exports = {
   PutUser,
   addUser,
+  userByemail,
 };

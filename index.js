@@ -9,7 +9,7 @@ app.use(express.json());
 
 require("dotenv").config();
 
-const PORT = 3000;
+const PORT = 3001;
 
 const ProductsRouter = require("./Routes/productRoute");
 const usersrouter = require("./Routes/usersrouter");

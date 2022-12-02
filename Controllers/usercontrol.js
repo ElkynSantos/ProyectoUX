@@ -4,7 +4,7 @@ const { isDecimal } = require("../utils/validator");
 const { IsEmail } = require("../utils/validator");
 
 const crypto = require("crypto");
-
+const jwt = require("jsonwebtoken");
 const {
   successResponse,
   badRequestResponse,
@@ -65,7 +65,50 @@ function encryptPassword(
   return { salt, encryptedPassword };
 }
 
+async function loginuser(req, res) {
+  const { email, password } = req.body;
+
+  let user = await userServices.userByemail(email);
+
+  if (user) {
+    user = user[0];
+    const userEncryptedDetails = encryptPassword(password, user.salt);
+    if (userEncryptedDetails.encryptedPassword === user.password) {
+      const accessToken = jwt.sign(
+        {
+          email: user.email,
+          name: user.name,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
+
+      const refreshToken = jwt.sign(
+        {
+          email: user.email,
+        },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+          expiresIn: "30d",
+        }
+      );
+
+      res.send({
+        accessToken,
+        refreshToken,
+      });
+    } else {
+      res.status(401).send({});
+    }
+  } else {
+    res.status(404).send("Email does not exist");
+  }
+}
+
 module.exports = {
   PutUser,
   addUser,
+  loginuser,
 };
