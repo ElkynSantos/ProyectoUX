@@ -38,7 +38,23 @@ async function searchProduct(name1, brands, categories) {
   return ProductByName;
 }
 
+async function GetAllProduct() {
+  console.log("entro");
+  const ALL = JSON.parse(
+    JSON.stringify(
+      await knex
+        .select("*")
+        .from("products")
+        .join("brands", "brands.id_B", "=", "products.brand_id")
+        .join("categories", "id_C", "=", "products.category_id")
+    )
+  );
+
+  return ALL;
+}
+
 module.exports = {
   getProducts1,
   searchProduct,
+  GetAllProduct,
 };

@@ -53,7 +53,13 @@ async function searchProduct(req, res) {
   }
 }
 
+async function ALL(_, res) {
+  const products = await ProductsServices.GetAllProduct();
+  res.send(products);
+}
+
 module.exports = {
   getProducts,
   searchProduct,
+  ALL,
 };
