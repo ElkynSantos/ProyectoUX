@@ -40,6 +40,8 @@ async function searchProduct(name1, brands, categories) {
 
 async function GetAllProduct() {
   console.log("entro");
+  console.log("entroall");
+  //solucionado el entrar all
   const ALL = JSON.parse(
     JSON.stringify(
       await knex

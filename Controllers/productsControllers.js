@@ -56,6 +56,9 @@ async function searchProduct(req, res) {
 async function ALL(_, res) {
   const products = await ProductsServices.GetAllProduct();
   res.send(products);
+  console.log("entro all");
+  //localhost:3001/products/?limit=2&offset=0
+
 }
 
 module.exports = {
